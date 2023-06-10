@@ -1,0 +1,17 @@
+<html>
+<head>
+    <title>Custom Welcome Page</title>
+</head>
+<body>
+    <h1>Welcome to My Custom Page</h1>
+    <p>This is a customized welcome page.</p>
+</body>
+<script>
+
+fetch('http://127.0.0.1:8000/api/users')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
+
+</script>
+</html>
