@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twitter Timeline</title>
+</head>
+<body>
+  <header>
+    <h1>Twitter Timeline</h1>
+  </header>
+  <div class="timeline" id="timeline">
+  </div>
+</body>
+<style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #1DA1F2;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  color: white;
+  margin: 0;
+}
+
+.timeline {
+  margin: 20px;
+}
+
+.tweet {
+  background-color: #F5F8FA;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-info img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-details {
+  font-weight: bold;
+}
+
+.tweet-actions a {
+  margin-right: 10px;
+  color: #1DA1F2;
+  text-decoration: none;
+}
+
+.tweet-actions a:hover {
+  text-decoration: underline;
+}
+
+</style>
+<script>
+// script.js
+
+fetch('http://127.0.0.1:8000/api/timeline') // 実際のAPIのエンドポイントに置き換えてください
+  .then(response => response.json())
+  .then(data => {
+    const timeline = document.getElementById('timeline');
+
+    data.forEach(tweet => {
+      const tweetElement = document.createElement('div');
+      tweetElement.classList.add('tweet');
+
+      const userInfo = document.createElement('div');
+      userInfo.classList.add('user-info');
+
+    //   const userAvatar = document.createElement('img');
+    //   userAvatar.src = 'user-avatar.jpg'; // ユーザーアバターの画像URLに置き換えてください
+    //   userAvatar.alt = 'User Avatar';
+    //   userInfo.appendChild(userAvatar);
+
+      const userDetails = document.createElement('div');
+      userDetails.classList.add('user-details');
+
+      const username = document.createElement('h2');
+      username.textContent = tweet.name;
+      userDetails.appendChild(username);
+
+      const userId = document.createElement('p');
+      userId.textContent = `@${tweet.id}`;
+      userDetails.appendChild(userId);
+
+      userInfo.appendChild(userDetails);
+      tweetElement.appendChild(userInfo);
+
+      const tweetContent = document.createElement('p');
+      tweetContent.classList.add('tweet-content');
+      tweetContent.textContent = tweet.content;
+      tweetElement.appendChild(tweetContent);
+
+      timeline.appendChild(tweetElement);
+    });
+  })
+  .catch(error => {
+    console.log('Error:', error);
+  });
+
+</script>
+</html>
+

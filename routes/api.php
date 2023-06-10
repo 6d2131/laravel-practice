@@ -21,3 +21,26 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/users', function () {
     return response()->json(['message' => 'API endpoint for users']);
 });
+
+
+Route::get('/timeline', function () {
+    return response()->json(
+        [
+            [
+                'name' => '山本',
+                'id' => 'ymamoto',
+                'content' => 'こんにちは'
+            ],
+            [
+                'name' => '山本',
+                'id' => 'ymamoto',
+                'content' => 'こんにちは'
+            ],
+            [
+                'name' => '山本',
+                'id' => 'ymamoto',
+                'content' => 'こんにちは'
+            ]
+        ]
+    );
+});
