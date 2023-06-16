@@ -24,3 +24,5 @@ Route::get('/test', function () {
 Route::get('/timeline', function () {
     return view('timeline');
 });
+
+Route::get('post', 'App\Http\Controllers\PostController@index');
