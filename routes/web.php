@@ -26,3 +26,8 @@ Route::get('/timeline', function () {
 });
 
 Route::get('post', 'App\Http\Controllers\PostController@index');
+Route::get('post/create', 'App\Http\Controllers\PostController@create');
+Route::put('post', 'App\Http\Controllers\PostController@store');
+Route::delete('post/{id}', 'App\Http\Controllers\PostController@destroy');
+
+     
